@@ -15,8 +15,6 @@ fond.height = game.height;
 
 	
 	 button = game.load.image('button', 'images/menu.png');
-	 music = game.add.audio('m1');
-	 music.play();
 },
 
 create: function (){
