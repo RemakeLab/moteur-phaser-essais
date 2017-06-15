@@ -9,7 +9,7 @@ var easystar;
 var path=[];
 var isFindingPath=false;
 var stepsTaken=0;
-var stepsTillTurn=10;// test pour voir si c'est suffisant
+var stepsTillTurn=20;// test pour voir si c'est suffisant
 
  Pathfinding = function(game)
 {
@@ -84,10 +84,14 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 	    if (path === null) {
 	        console.log("No Path was found.");
 	    }else{
-	    	// console.log("Path was found. The first Point is " + path[0].x + " " + path[0].y);
 	        path.push(tapPos);
 	        path.reverse();
 	        path.pop();
+	        for (var i =0; i<path.length; i++ ) {
+	        	path[i].y;
+	        	path[i].x;
+	        	// console.log("Path was found. The first Point is " + path[0].x + " " + path[0].y);
+	        }
 	    }
 	},
 	/*
@@ -103,7 +107,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 				return;
 			}
 		}
-		if (heroMapTile.x==destination.x&&heroMapTile.y==destination.y) { //rechercher la destion, mettre la nouvelle, changer la direction
+		if (heroMapTile.x==destination.x&&heroMapTile.y==destination.y) { //rechercher la destination, mettre la nouvelle, changer la direction
 			// attendre un peu dans la tuile avant de lancer
 			stepsTaken++;
 			if (stepsTaken<stepsTillTurn) {
@@ -113,23 +117,29 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 			stepsTaken=0;
 			destination=path.pop();//quel est la prochaine tile
 			if (heroMapTile.x<destination.x) {
+				console.log("je bouge vers +x");
 				dX = 1;
 			}else if (heroMapTile.x>destination.x) {
+				console.log("je bouge vers -x");
 				dX = -1;
 			}else{
 				dX = 0;
 			}
 			if (heroMapTile.y<destination.y) {
+				console.log("je bouge vers +y");
 				dY = 1;
 			}else if (heroMapTile.y>destination.y) {
+				console.log("je bouge vers -y");
 				dY = -1;
 			}else{
 				dY = 0;
 			}
 			if (heroMapTile.x==destination.x) { //haut ou bas
 				dX= 0;
+				console.log("Est arriver a destination x");
 			}else if (heroMapTile.y==destination.y) { //droite ou gauche
 				dY= 0;
+				console.log("Est arriver a destination y");
 			}
 			//quelle direction par rapport a la "face" du hero
 			if (dX==1) {
@@ -148,11 +158,11 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 				if (dY==0) {
 					facing="west";
 				}else if(dY==1){
-					facing="soutwest";
+					facing="southwest";
 					dY=halfSpeed;
 					dX=-1*halfSpeed;
 				}else{
-					facing="nortwest";
+					facing="northwest";
 					dX=dY=-1*halfSpeed;
 				}
 			}

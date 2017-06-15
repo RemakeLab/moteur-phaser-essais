@@ -8,7 +8,7 @@ var facing;
 var oPlayer = null;
 var oLevel = null;
 var oGame = null;
-var heroMapTile=new Phaser.Point(3,3);
+var heroMapTile=new Phaser.Point(2,3);
 var heroMapPos;
 var destination=heroMapTile;
 var height = window.innerHeight;
@@ -75,6 +75,7 @@ function create()
 	oLevel.create();
 	oPlayer.create();
     oPathfinding.create();
+    console.log("heroMapPos= "+heroMapPos.x+" ; "+heroMapPos.y);
 }
 
 /*

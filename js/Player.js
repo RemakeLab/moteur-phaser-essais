@@ -66,6 +66,8 @@ Player.prototype =
 		}
 		heroMapPos.x += heroSpeed * dX;
 		heroMapPos.y += heroSpeed * dY;
+
+		heroMapTile=this.getTileCoordinates(heroMapPos, tileWidth);
 	},
 	drawHeroIso:function(){
         var isoPt= new Phaser.Point();//It is not advisable to create points in update loop
