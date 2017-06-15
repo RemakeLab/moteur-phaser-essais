@@ -49,14 +49,14 @@ Level.prototype =
 		var visibleTiles=new Phaser.Point(6,6);
         gameScene.clear();//nettoyer la frame avant d'en faire une autre
         var tileType=0;
-        //let us limit the loops within visible area
+        //Limites les boucles dans la zone visible
         var startTileX=Math.max(0,0-cornerMapTile.x);
         var startTileY=Math.max(0,0-cornerMapTile.y);
         var endTileX=Math.min(levelData[0].length,startTileX+visibleTiles.x);
         var endTileY=Math.min(levelData.length,startTileY+visibleTiles.y);
         startTileX=Math.max(0,endTileX-visibleTiles.x);
         startTileY=Math.max(0,endTileY-visibleTiles.y);
-        //check for border condition
+        //check les conditions de bordure
         for (var i = startTileY; i < endTileY; i++)
         {
             for (var j = startTileX; j < endTileX; j++)
@@ -72,12 +72,12 @@ Level.prototype =
     
     drawTileIso:function(tileType,i,j){//placer l'isometric level tiles
         var isoPt= new Phaser.Point();
-        var cartPt=new Phaser.Point();//This is here for better code readability.
+        var cartPt=new Phaser.Point();
         cartPt.x=j*tileWidth+cornerMapPos.x;
         cartPt.y=i*tileWidth+cornerMapPos.y;
         isoPt=this.cartesianToIsometric(cartPt);
 
-        //we could further optimise by not drawing if tile is outside screen.
+        // Nous pourrions encore optimiser en ne dessinant pas si la mosaïque est en dehors de l'écran, /!\ A faire /!\
         if(tileType==1){
             gameScene.renderXY(wallSprite, isoPt.x+borderOffset.x, isoPt.y+borderOffset.y-wallHeight, false);
         }

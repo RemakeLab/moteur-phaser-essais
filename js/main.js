@@ -53,7 +53,7 @@ function Main()
 }
 
 /*
- *Préchaargement des éléments du jeu
+ *Préchargement des éléments du jeu
  */
 function preload()
 {

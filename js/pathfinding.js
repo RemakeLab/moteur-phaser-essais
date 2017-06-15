@@ -9,7 +9,7 @@ var easystar;
 var path=[];
 var isFindingPath=false;
 var stepsTaken=0;
-var stepsTillTurn=20;// test pour voir si c'est suffisant
+var stepsTillTurn=10;// test pour voir si c'est suffisant
 
  Pathfinding = function(game)
 {
@@ -39,8 +39,8 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 		easystar = new EasyStar.js();
 	    easystar.setGrid(levelData);
 	    easystar.setAcceptableTiles([0]);
-	    easystar.enableDiagonals();// we want path to have diagonals
-	    easystar.disableCornerCutting();// no diagonal path when walking at wall corners
+	    easystar.enableDiagonals();//  chemain en diagonale
+	    easystar.disableCornerCutting();// Pas de trajectoire diagonale en marchant aux angles des murs
 
    		Lclic =this.oGame.input.activePointer.leftButton.onUp.add(this.findPath);
 	},
@@ -61,13 +61,13 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 	    var pos=oGame.input.activePointer.position;
 	    var isoPt= new Phaser.Point(pos.x-borderOffset.x,pos.y-borderOffset.y);
 	    tapPos=oPathfinding.isometricToCartesian(isoPt);
-	    tapPos.x-=tileWidth/2;//adjustment to find the right tile for error due to rounding off
+	    tapPos.x-=tileWidth/2;//ajustement pour trouver la position de la tuile
 	    tapPos.y+=tileWidth/2;
 	    tapPos=oPlayer.getTileCoordinates(tapPos,tileWidth);
-	    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<13&&tapPos.y<13){//tapped within grid
-	        if(levelData[tapPos.y][tapPos.x]!=1){//not wall tile
+	    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<13&&tapPos.y<13){//clic dans la grille
+	        if(levelData[tapPos.y][tapPos.x]!=1){//pas un tile "mur"
 	            isFindingPath=true;
-	            //let the algorithm do the magic
+	            //C'est partie pour l'ago magique
 	            this.easystar.findPath(heroMapTile.x, heroMapTile.y, tapPos.x, tapPos.y, oPathfinding.plotAndMove);
 	            this.easystar.calculate();
 	            // console.log("Point"+pos+";"+"tapPos"+tapPos);
@@ -90,7 +90,7 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 	        for (var i =0; i<path.length; i++ ) {
 	        	path[i].y;
 	        	path[i].x;
-	        	// console.log("Path was found. The first Point is " + path[0].x + " " + path[0].y);
+	        	// console.log("le chemain a été trouvé. Le premier point est: " + path[0].x + " " + path[0].y);
 	        }
 	    }
 	},
@@ -98,7 +98,6 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 	 * Fonction qui gère le mouvement
 	 */
 	aiWalk: function(){
-		// console.log("je ne marche pas encore :p");
 		if(path.length==0){
 			if (heroMapTile.x==destination.x&&heroMapTile.y==destination.y) {
 				dX=0;
@@ -115,7 +114,7 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 			}
 			console.log("at "+heroMapTile.x+" ; "+heroMapTile.y);
 			stepsTaken=0;
-			destination=path.pop();//quel est la prochaine tile
+			destination=path.pop();// quel est la prochaine tile
 			if (heroMapTile.x<destination.x) {
 				// console.log("je bouge vers +x");
 				dX = 1;
@@ -175,7 +174,7 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 					facing="north";
 				}
 			}
-			console.log(facing);
+			// console.log(facing);
 		}
 	},
 
