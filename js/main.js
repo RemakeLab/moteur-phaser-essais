@@ -75,7 +75,7 @@ function create()
 	oLevel.create();
 	oPlayer.create();
     oPathfinding.create();
-    console.log("heroMapPos= "+heroMapPos.x+" ; "+heroMapPos.y);
+    // console.log("heroMapPos= "+heroMapPos.x+" ; "+heroMapPos.y);
 }
 
 /*

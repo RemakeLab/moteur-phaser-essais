@@ -75,7 +75,7 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 	    }
 	},
 	/*
-	 * fonction pour placer un point et lancer le movement
+	 * fonction pour placer un point et lancer le mouvement
 	 */
 	plotAndMove:function(newPath){
 	    destination=heroMapTile;
@@ -95,7 +95,7 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 	    }
 	},
 	/*
-	 * Fonction qui gère le movement
+	 * Fonction qui gère le mouvement
 	 */
 	aiWalk: function(){
 		// console.log("je ne marche pas encore :p");
@@ -117,39 +117,39 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 			stepsTaken=0;
 			destination=path.pop();//quel est la prochaine tile
 			if (heroMapTile.x<destination.x) {
-				console.log("je bouge vers +x");
+				// console.log("je bouge vers +x");
 				dX = 1;
 			}else if (heroMapTile.x>destination.x) {
-				console.log("je bouge vers -x");
+				// console.log("je bouge vers -x");
 				dX = -1;
 			}else{
 				dX = 0;
 			}
 			if (heroMapTile.y<destination.y) {
-				console.log("je bouge vers +y");
+				// console.log("je bouge vers +y");
 				dY = 1;
 			}else if (heroMapTile.y>destination.y) {
-				console.log("je bouge vers -y");
+				// console.log("je bouge vers -y");
 				dY = -1;
 			}else{
 				dY = 0;
 			}
 			if (heroMapTile.x==destination.x) { //haut ou bas
 				dX= 0;
-				console.log("Est arriver a destination x");
+				// console.log("Est arriver a destination x");
 			}else if (heroMapTile.y==destination.y) { //droite ou gauche
 				dY= 0;
-				console.log("Est arriver a destination y");
+				// console.log("Est arriver a destination y");
 			}
 			//quelle direction par rapport a la "face" du hero
 			if (dX==1) {
 				if (dY==0) {
 					facing = "east";
 				}else if (dY==1) {
-					facing = "southeast";
+					facing = "south";
 					dX=dY=halfSpeed;
 				}else{
-					facing = "northeast";
+					facing = "east";
 					dX=halfSpeed;
 					dY=-1*halfSpeed;
 				}
@@ -158,11 +158,11 @@ var stepsTillTurn=20;// test pour voir si c'est suffisant
 				if (dY==0) {
 					facing="west";
 				}else if(dY==1){
-					facing="southwest";
+					facing="west";
 					dY=halfSpeed;
 					dX=-1*halfSpeed;
 				}else{
-					facing="northwest";
+					facing="north";
 					dX=dY=-1*halfSpeed;
 				}
 			}
