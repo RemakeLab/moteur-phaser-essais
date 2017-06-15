@@ -1,10 +1,88 @@
-var width = window.innerWidth;
+/*
+ * Les variables du jeu
+ * Les instances des classes
+ */
+var dX=0;
+var dY=0;
+var facing;
+var oPlayer = null;
+var oLevel = null;
+var oGame = null;
+var heroMapTile=new Phaser.Point(3,3);
+var heroMapPos;
+var destination=heroMapTile;
 var height = window.innerHeight;
-var game = new Phaser.Game(width, height, Phaser.AUTO);
-game.state.add('Boot', bootState);
-game.state.add('preload', loadState);
-game.state.add('menu', menuState);
-game.state.add('game', gameState);
-//game.state.add('game2', gameState2);
-//game.state.add('game3', gameState3);
-game.state.start('Boot',game.boot);
+var width = window.innerWidth;
+var halfSpeed=0.5; //vitesse du hero
+var tileWidth=64;
+var levelData=
+[   [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 2,2,2,2,2,2,2,2, 1], 
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1], 
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1], 
+    [1, 0,2,2,2,2,2,2,2, 1],
+    [1, 0,0,0,0,0,0,0,0, 1], 
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,3,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1],
+    [1, 0,0,0,0,0,0,0,0, 1], 
+    [1, 2,2,2,2,2,2,2,2, 1],
+    [1, 0,0,0,0,0,0,0,0, 1]
+];
+
+document.addEventListener("DOMContentLoaded", Main, false);
+
+/*
+ * fonction principale
+ * Appelée au chargement de la page
+ */
+function Main()
+{
+	console.log("Main");
+	// création de la zone de jeu - API Canvas
+	oGame = new Phaser.Game(width, height, Phaser.AUTO,'idGameDiv', {preload :preload, create: create, update: update});
+}
+
+/*
+ *Préchaargement des éléments du jeu
+ */
+function preload()
+{
+	oLevel = new Level(oGame);
+	oLevel.preload();
+
+	oPlayer = new Player(oGame);
+	oPlayer.preload();
+
+    oPathfinding = new Pathfinding(oGame);
+}
+
+/*
+ * Création de la scène du jeu,
+ * mise en place des graphismes...
+ */
+function create()
+{
+	oLevel.create();
+	oPlayer.create();
+    oPathfinding.create();
+}
+
+/*
+ * Appelée en continu pendant le jeu
+ */
+function update()
+{
+    oPathfinding.update();
+	oPlayer.update();
+    oLevel.update();
+}
