@@ -140,7 +140,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 			//quelle direction par rapport a la "face" du hero
 			if (dX==1) {
 				if (dY==0) {
-					facing = "east";
+					facing = "southeast";
 				}else if (dY==1) {
 					facing = "south";
 					dX=dY=halfSpeed;
@@ -152,7 +152,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 			}
 			else if (dX==-1) {
 				if (dY==0) {
-					facing="west";
+					facing="northwest";
 				}else if(dY==1){
 					facing="west";
 					dY=halfSpeed;
@@ -171,7 +171,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 					facing="northeast";
 				}
 			}
-			// console.log(facing);
+			console.log(facing);
 		}
 	},
 
