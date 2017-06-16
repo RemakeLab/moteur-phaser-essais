@@ -10,12 +10,12 @@ var floorGraphicWidth=64;
 var floorGraphicHeight=32;
 var heroGraphicWidth=64;
 var heroGraphicHeight=50;
-var heroHeight=(floorGraphicHeight/2)+(heroGraphicHeight-floorGraphicHeight)+6;//adjustments to make the legs hit the middle of the tile for initial load
+var heroHeight=(floorGraphicHeight/2)+(heroGraphicHeight-floorGraphicHeight)+10;// +10 pour éviter que le perso se confonde dans le sol
 var heroWidth= (floorGraphicWidth/2)-(heroGraphicWidth/2);
 var heroMapPos;
 var heroSpeed=3;
 var hero2DVolume = new Phaser.Point(30,30);
-var shadowOffset=new Phaser.Point(heroWidth+7,11);
+var shadowOffset=new Phaser.Point(heroWidth+20,7); // +20 = emplacement ******  // 7 = hauteur 
 
 Player = function(game)
 {
@@ -34,7 +34,7 @@ Player.prototype =
 	 */
 	preload: function()
 	{
-		this.oGame.load.image('heroShadow', 'https://dl.dropboxusercontent.com/s/sq6deec9ddm2635/ball_shadow.png?dl=0');
+		this.oGame.load.image('heroShadow', 'images/shadow.png');
 		this.oGame.load.atlasJSONArray('hero', 'images/assets/spritesheet.png', 'images/assets/sprites.json');
 	},
 
@@ -45,9 +45,11 @@ Player.prototype =
 	create: function()
 	{
 		heroShadow = this.oGame.make.sprite(0,0,'heroShadow');
-		heroShadow.scale = new Phaser.Point(0.2,0.6);
+		heroShadow.scale = new Phaser.Point(0.6,0.6);
 		heroShadow.alpha=0.4;
+
 		this.createLevel();
+		
 	},
 
 
@@ -74,13 +76,13 @@ Player.prototype =
         var heroCornerPt=new Phaser.Point(heroMapPos.x-hero2DVolume.x/2+cornerMapPos.x,heroMapPos.y-hero2DVolume.y/2+cornerMapPos.y);
         isoPt=oLevel.cartesianToIsometric(heroCornerPt);//donne une nouvelle position iso pour le hero
         gameScene.renderXY(sorcerer,isoPt.x+borderOffset.x+heroWidth, isoPt.y+borderOffset.y-heroHeight, false);// dessine le hero
-        // gameScene.renderXY(heroShadow,isoPt.x+borderOffset.x+shadowOffset.x, isoPt.y+borderOffset.y+shadowOffset.y, false);// dessine l'ombre
+        gameScene.renderXY(heroShadow,isoPt.x+borderOffset.x+shadowOffset.x, isoPt.y+borderOffset.y+shadowOffset.y, false);// dessine l'ombre
     },
 
 	addHero:function(){
 	    // création du perso
 	    sorcerer = this.oGame.add.sprite(-50, 0, 'hero', 'Nord7');
-	   
+
 	   
 	    // animations, les noms sont tirés du JSON 
 	    sorcerer.animations.add('southeast',
@@ -155,6 +157,7 @@ Player.prototype =
 		heroMapPos.y+=(tileWidth/2);
 		heroMapTile=this.getTileCoordinates(heroMapPos, tileWidth);
 		oLevel.renderScene();
+
 	}
 
 };

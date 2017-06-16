@@ -65,7 +65,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 	    tapPos.x-=tileWidth/2;//ajustement pour trouver la position de la tuile
 	    tapPos.y+=tileWidth/2;
 	    tapPos=oPlayer.getTileCoordinates(tapPos,tileWidth);
-	    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<13&&tapPos.y<13){//clic dans la grille
+	    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<levelData.length&&tapPos.y<levelData.length){//clic dans la grille
 	        if(levelData[tapPos.y][tapPos.x]!=1){//pas une tile "mur"
 	            isFindingPath=true;
 	            //C'est partie pour l'ago magique

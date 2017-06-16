@@ -24,7 +24,7 @@ Level.prototype =
 	*/
 	preload: function()
 	{
-		this.oGame.stage.backgroundColor = "balck";
+		this.oGame.stage.backgroundColor = "black";
 		this.oGame.load.image('exit', 'images/exit.png');
 		this.oGame.load.image('wall','images/assets/murG.png');
 		this.oGame.load.image('wall2','images/assets/murD.png');
@@ -43,6 +43,8 @@ Level.prototype =
         exitMarker = this.oGame.make.sprite(0, 0, 'exit');
     	gameScene  = this.oGame.add.renderTexture(this.oGame.width,this.oGame.height);
 		this.oGame.add.sprite(0, 0, gameScene);
+
+	
 	},
 
 	renderScene:function(){
@@ -57,6 +59,7 @@ Level.prototype =
                 this.drawTileIso(tileType,i,j);
                 if(i==heroMapTile.y&&j==heroMapTile.x){
                     oPlayer.drawHeroIso();
+                    oGame.camera.follow(this.oPlayer);
                 }
             }
         }
@@ -83,6 +86,7 @@ Level.prototype =
             gameScene.renderXY(floorSprite, isoPt.x+borderOffset.x, isoPt.y+borderOffset.y, false);
         }
     },
+
     cartesianToIsometric:function(cartPt){
         var tempPt=new Phaser.Point();
         tempPt.x=cartPt.x-cartPt.y;
@@ -94,7 +98,7 @@ Level.prototype =
 	* Appelée en continu pendant le jeu
 	*/
 	update: function()
-	{
+	{	
 		this.renderScene();
 	}
 };
