@@ -14,7 +14,7 @@ var destination=heroMapTile;
 var height = window.innerHeight;
 var width = window.innerWidth;
 var halfSpeed=0.5; //vitesse du hero
-var tileWidth=64;
+var tileWidth=32;
 var levelData=
 [   [1, 0,0,0,0,0,0,0,0, 1],
     [1, 2,2,2,2,2,2,2,2, 1], 

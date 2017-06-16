@@ -70,16 +70,16 @@ Player.prototype =
 		heroMapTile=this.getTileCoordinates(heroMapPos, tileWidth);
 	},
 	drawHeroIso:function(){
-        var isoPt= new Phaser.Point();//It is not advisable to create points in update loop
+        var isoPt= new Phaser.Point();
         var heroCornerPt=new Phaser.Point(heroMapPos.x-hero2DVolume.x/2+cornerMapPos.x,heroMapPos.y-hero2DVolume.y/2+cornerMapPos.y);
         isoPt=oLevel.cartesianToIsometric(heroCornerPt);//donne une nouvelle position iso pour le hero
-        gameScene.renderXY(sorcerer,isoPt.x+borderOffset.x+heroWidth, isoPt.y+borderOffset.y-heroHeight, false);//dessine le hero
-        // gameScene.renderXY(heroShadow,isoPt.x+borderOffset.x+shadowOffset.x, isoPt.y+borderOffset.y+shadowOffset.y, false);//dessine l'ombre
+        gameScene.renderXY(sorcerer,isoPt.x+borderOffset.x+heroWidth, isoPt.y+borderOffset.y-heroHeight, false);// dessine le hero
+        // gameScene.renderXY(heroShadow,isoPt.x+borderOffset.x+shadowOffset.x, isoPt.y+borderOffset.y+shadowOffset.y, false);// dessine l'ombre
     },
 
 	addHero:function(){
 	    // création du perso
-	    sorcerer = this.oGame.add.sprite(-50, 0, 'hero', 'Nord7');// keep him out side screen area
+	    sorcerer = this.oGame.add.sprite(-50, 0, 'hero', 'Nord7');
 	   
 	   
 	    // animations, les noms sont tirés du JSON 

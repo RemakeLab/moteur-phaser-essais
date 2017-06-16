@@ -1,5 +1,6 @@
 /*
  * Classe PathFinding qui gère le déplacement du hero, le joueur.
+ * Utilisation de la librairie easystar
  */
 
 /*
@@ -39,7 +40,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 		easystar = new EasyStar.js();
 	    easystar.setGrid(levelData);
 	    easystar.setAcceptableTiles([0]);
-	    easystar.enableDiagonals();//  chemain en diagonale
+	    easystar.enableDiagonals();//  chemin en diagonale
 	    easystar.disableCornerCutting();// Pas de trajectoire diagonale en marchant aux angles des murs
 
    		Lclic =this.oGame.input.activePointer.leftButton.onUp.add(this.findPath);
@@ -65,7 +66,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 	    tapPos.y+=tileWidth/2;
 	    tapPos=oPlayer.getTileCoordinates(tapPos,tileWidth);
 	    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<13&&tapPos.y<13){//clic dans la grille
-	        if(levelData[tapPos.y][tapPos.x]!=1){//pas un tile "mur"
+	        if(levelData[tapPos.y][tapPos.x]!=1){//pas une tile "mur"
 	            isFindingPath=true;
 	            //C'est partie pour l'ago magique
 	            this.easystar.findPath(heroMapTile.x, heroMapTile.y, tapPos.x, tapPos.y, oPathfinding.plotAndMove);
@@ -87,11 +88,7 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 	        path.push(tapPos);
 	        path.reverse();
 	        path.pop();
-	        for (var i =0; i<path.length; i++ ) {
-	        	path[i].y;
-	        	path[i].x;
-	        	// console.log("le chemain a été trouvé. Le premier point est: " + path[0].x + " " + path[0].y);
-	        }
+	        // console.log("le chemin a été trouvé. Le premier point est: " + path[0].x + " " + path[0].y);
 	    }
 	},
 	/*
@@ -169,9 +166,9 @@ var stepsTillTurn=10;// test pour voir si c'est suffisant
 				if (dY == 0) {
 					facing="west";
 				}else if (dY==1) {
-					facing ="south";
+					facing ="southwest";
 				}else{
-					facing="north";
+					facing="northeast";
 				}
 			}
 			// console.log(facing);

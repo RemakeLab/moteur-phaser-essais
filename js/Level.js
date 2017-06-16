@@ -28,7 +28,7 @@ Level.prototype =
 		this.oGame.load.image('exit', 'images/exit.png');
 		this.oGame.load.image('wall','images/assets/murG.png');
 		this.oGame.load.image('wall2','images/assets/murD.png');
-		this.oGame.load.image('floor','images/assets/sol3.png');
+		this.oGame.load.image('floor','images/assets/sol2.png');
 	},
 
 	/*
@@ -40,26 +40,18 @@ Level.prototype =
 		floorSprite= this.oGame.make.sprite(0, 0, 'floor');
     	wallSprite = this.oGame.make.sprite(0, 0, 'wall');
     	wallSprite2= this.oGame.make.sprite(0, 0, 'wall2');
+        exitMarker = this.oGame.make.sprite(0, 0, 'exit');
     	gameScene  = this.oGame.add.renderTexture(this.oGame.width,this.oGame.height);
 		this.oGame.add.sprite(0, 0, gameScene);
 	},
 
 	renderScene:function(){
-		var cornerMapTile=new Phaser.Point(0,0);
-		var visibleTiles=new Phaser.Point(6,6);
         gameScene.clear();//nettoyer la frame avant d'en faire une autre
         var tileType=0;
-        //Limites les boucles dans la zone visible
-        var startTileX=Math.max(0,0-cornerMapTile.x);
-        var startTileY=Math.max(0,0-cornerMapTile.y);
-        var endTileX=Math.min(levelData[0].length,startTileX+visibleTiles.x);
-        var endTileY=Math.min(levelData.length,startTileY+visibleTiles.y);
-        startTileX=Math.max(0,endTileX-visibleTiles.x);
-        startTileY=Math.max(0,endTileY-visibleTiles.y);
         //check les conditions de bordure
-        for (var i = startTileY; i < endTileY; i++)
+        for (var i = 0; i < levelData.length; i++)
         {
-            for (var j = startTileX; j < endTileX; j++)
+            for (var j = 0; j < levelData[0].length; j++)
             {
                 tileType=levelData[i][j];
                 this.drawTileIso(tileType,i,j);
